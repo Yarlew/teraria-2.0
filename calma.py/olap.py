@@ -1,7 +1,6 @@
 import emoji
 
-print(emoji.emojize('legal :thumbs_up:'))
-
+print(emoji.emojize('ola mundo :red_heart:'))
 
 
 
