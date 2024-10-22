@@ -1,0 +1,60 @@
+import arcade
+
+# Configurações da janela
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+
+# Classe para o jogo
+class MyGame(arcade.Window):
+    def __init__(self):
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, "Terraria Clone")
+
+        # Posição do "mundo" (representa o deslocamento da paisagem)
+        self.world_x = 0
+        self.world_y = 0
+
+        # Velocidade de movimento do "mundo"
+        self.world_speed = 5
+
+        # Carregar a imagem de fundo (paisagem)
+        self.background = arcade.load_texture("caminho/para/sua/imagem_de_fundo.png")
+
+        # Criar o sprite do personagem
+        self.player_sprite = arcade.Sprite("caminho/para/seu/personagem.png", scale=0.5)  # Redimensionar o personagem se necessário
+
+        # Posição inicial do jogador no centro da tela
+        self.player_sprite.center_x = SCREEN_WIDTH // 2
+        self.player_sprite.center_y = SCREEN_HEIGHT // 2
+
+        # Criar a câmera
+        self.camera = arcade.Camera(SCREEN_WIDTH, SCREEN_HEIGHT)
+
+    def on_draw(self):
+        arcade.start_render()
+
+        # Definir a câmera para seguir o jogador
+        self.camera.use()
+
+        # Desenhar a imagem de fundo (paisagem)
+        arcade.draw_lrwh_rectangle_textured(self.world_x - 1000, self.world_y - 1000, 2000, 2000, self.background)
+
+        # Desenhar o jogador (sprite) no centro da tela
+        self.player_sprite.draw()
+
+    def on_update(self, delta_time):
+        pass  # Aqui poderia ir a lógica do jogo
+
+    def on_key_press(self, key, modifiers):
+        # Movimentar o "mundo" para simular o movimento do personagem
+        if key == arcade.key.LEFT:
+            self.world_x += self.world_speed  # Move o mundo para a direita
+        elif key == arcade.key.RIGHT:
+            self.world_x -= self.world_speed  # Move o mundo para a esquerda
+        elif key == arcade.key.UP:
+            self.world_y -= self.world_speed  # Move o mundo para baixo
+        elif key == arcade.key.DOWN:
+            self.world_y += self.world_speed  # Move o mundo para cima
+
+# Iniciar o jogo
+window = MyGame()
+arcade.run()

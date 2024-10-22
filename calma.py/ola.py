@@ -16,7 +16,7 @@ class MyGame(arcade.Window):
     def on_draw(self):
         arcade.start_render()
         # Desenhar o jogador como um retângulo verde
-        arcade.draw_rectangle_filled(self.player_x, self.player_y, 50, 50, arcade.color.GREEN)
+        arcade.draw_rectangle_filled(self.player_x, self.player_y, 50, 50, arcade.color.RED)
 
     def on_update(self, delta_time):
         pass  # Atualizações de lógica do jogo
